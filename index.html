@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap" rel="stylesheet">
+  <title>Cálculo de Stop Loss Automatizado</title>
+</head>
+
+<body>
+  <header class="page-header _font-center">
+    <div class="container">
+      <h1>Calculadora de Stop Loss Ideal</h1>
+      <p>A forma mais simples, rápida e eficiente de calcular o melhor Stop Loss para suas operações e não ser pêgo com
+        perdas muito superiores as suas metas. Encontre o melhor Stop Loss, descubra a melhor Stake para suas operações
+        e teste os diferentes fatores de multiplicação para o Martingale de forma instantânea e gratuita! Pensado para
+        quem adquiriu o Curso Turbo Binary ou quem assinou a plataforma Central Bots, mas pode ser usado por qualuqer um
+        que atua no mercado de opções binárias.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <form name="form" class="flex-row _direction-column _align-center">
+      <label class="form-label">
+        <span>Stop Loss Pretendido: </span> <br>
+        <input type="number" required step="any" name="stop" placeholder="ex: 10">
+      </label>
+
+      <label class="form-label">
+        <span>Valor de entrada (stake): </span> <br>
+        <input type="number" required step="any" name="stake" placeholder="ex: 0,35">
+      </label>
+
+      <label class="form-label">
+        <span>Fator de Multiplicação: </span> <br>
+        <input type="number" required step="any" name="mfactor" placeholder="ex: 1,1">
+      </label>
+
+      <label class="form-label">
+        <input type="checkbox" name="soma">
+        <span>Soma ao valor anterior?</span>
+      </label>
+
+      <button class="btn-submit">
+        Realizar Cálculo
+      </button>
+    </form>
+    <div class="stop-ideal _font-center">
+      <p>
+        O valor ideal de Stop Loss é de: <span style="color: green; font-size: 25px;">$</span><span
+          class="show_number">0</span>
+      </p>
+    </div>
+    <div class="flex-row _justify-center">
+      <table>
+        <tr>
+          <th>Stop Loss Pretendido</th>
+          <th>Valor Máximo de Martingale</th>
+          <th>Stop Loss Ideal</th>
+          <th>Num. de Martingales</th>
+        </tr>
+        <tr>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+          <td>---</td>
+        </tr>
+      </table>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
