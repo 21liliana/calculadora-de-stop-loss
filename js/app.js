@@ -70,7 +70,6 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
     while (multi) {
       stake = (m_factor * stake) + stake_anterior;
-      console.log(stake);
 
       if (stake > stop_ideal) {
         format_banca.set_value(stake_anterior);
@@ -78,7 +77,6 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
         format_banca.set_value(stake);
         let valor_ultra = format_banca.get_fomated_price();
-        console.log('valor ultra: ' + valor_ultra);
 
         const obj_ret = {
           'banca_ideal': banca_ideal,
@@ -95,7 +93,6 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
   } else {
     while (multi) {
       stake = m_factor * stake;
-      console.log(stake);
 
       if (stake > stop_ideal) {
         format_banca.set_value(stake_anterior);
@@ -103,8 +100,6 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
         format_banca.set_value(stake);
         let valor_ultra = format_banca.get_fomated_price();
-        console.log('valor ultra: ' + valor_ultra);
-
         const obj_ret = {
           'banca_ideal': banca_ideal,
           'valor_ultra': valor_ultra,
@@ -156,10 +151,3 @@ form_calc.addEventListener("submit", function (e) {
   let show_value = document.querySelector('.show_number');
   show_calc(form_calc, show_value);
 })
-
-
-
-
-
-
-// calculo_stop(7, 2.1, 0.35);
