@@ -30,6 +30,8 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
   } else {
     while (multi) {
+      stake = m_factor * stake;
+      soma_valores += stake;
       if (soma_valores > stop_ideal) {
         let banca_ideal = soma_anterior;
         let valor_ultra = soma_valores;
