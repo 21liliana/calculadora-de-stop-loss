@@ -34,8 +34,6 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
     while (multi) {
       stake = m_factor * stake;
       soma_valores += stake;
-      // console.log(soma_valores);
-      // console.log('stake: ' + stake);
       if (soma_valores > stop_ideal) {
         let banca_ideal = soma_anterior;
         let valor_ultra = soma_valores;
