@@ -77,8 +77,7 @@ table th {
   .table-responsive tbody {
     width: auto;
     position: relative;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
     white-space: nowrap;
   }
 

@@ -1,86 +1,25 @@
-class FormatNumber {
-  constructor() {
-    this.number_to_format = '';
-    this.cents = '';
-    this.value = '';
-    this.price_formated = 0;
-  }
-
-  format_number() {
-    if (this.number_to_format.indexOf('.') != -1) {
-      let get_numbers = this.number_to_format.split('.');
-
-      get_numbers[0] = this.format_value(get_numbers[0]);
-      get_numbers[1] = this.format_cents(get_numbers[1]);
-
-      this.price_formated = get_numbers.join(',');
-
-    } else {
-      this.price_formated = this.format_value(this.number_to_format) + ',00';
-    }
-  }
-
-  format_cents(cents) {
-
-    let numberToCents = cents.split('');
-    if (numberToCents.length < 2) {
-      numberToCents.push('0');
-    } else if (numberToCents.length > 2) {
-      let intens_in_array = +numberToCents.length - 2;
-      numberToCents.splice(2, intens_in_array);
-    }
-
-    let joinCents = numberToCents.join('');
-    return joinCents;
-  }
-
-  format_value(value) {
-    let numberToPrice = value.split('');
-    if (numberToPrice.length == 4) {
-      numberToPrice.splice(1, 0, '.');
-    } else if (numberToPrice.length == 5) {
-      numberToPrice.splice(2, 0, '.');
-    } else if (numberToPrice.length == 6) {
-      numberToPrice.splice(3, 0, '.');
-    }
-
-    let joinPrice = numberToPrice.join('');
-    return joinPrice;
-  }
-
-  get_fomated_price() {
-    return this.price_formated;
-  }
-
-  set_value(value) {
-    this.number_to_format = value.toString();
-    this.format_number();
-  }
-}
 // --------------
-
-const format_banca = new FormatNumber();
 
 function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
   let multi = 1;
   let stake_anterior = stake;
+  let soma_valores = stake;
   let contador = 0;
+  let soma_anterior = 0;
   if (soma) {
-
     while (multi) {
       stake = (m_factor * stake) + stake_anterior;
-
-      if (stake > stop_ideal) {
-        format_banca.set_value(stake_anterior);
-        let banca_ideal = format_banca.get_fomated_price();
-
-        format_banca.set_value(stake);
-        let valor_ultra = format_banca.get_fomated_price();
+      soma_valores += stake;
+      console.log(soma_valores);
+      console.log('stake: ' + stake);
+      if (soma_valores > stop_ideal) {
+        let banca_ideal = soma_anterior;
+        let valor_ultra = soma_valores;
 
         const obj_ret = {
-          'banca_ideal': banca_ideal,
-          'valor_ultra': valor_ultra,
+          'banca_ideal': banca_ideal.toLocaleString('en-us', { style: 'currency', currency: 'USD' }),
+          'valor_ultra': valor_ultra.toLocaleString('en-us', { style: 'currency', currency: 'USD' }),
           'contador': contador
         };
         multi = false;
@@ -88,21 +27,22 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
       }
       contador++;
       stake_anterior = stake;
+      soma_anterior = soma_valores;
     }
 
   } else {
     while (multi) {
       stake = m_factor * stake;
+      soma_valores += stake;
+      // console.log(soma_valores);
+      // console.log('stake: ' + stake);
+      if (soma_valores > stop_ideal) {
+        let banca_ideal = soma_anterior;
+        let valor_ultra = soma_valores;
 
-      if (stake > stop_ideal) {
-        format_banca.set_value(stake_anterior);
-        let banca_ideal = format_banca.get_fomated_price();
-
-        format_banca.set_value(stake);
-        let valor_ultra = format_banca.get_fomated_price();
         const obj_ret = {
-          'banca_ideal': banca_ideal,
-          'valor_ultra': valor_ultra,
+          'banca_ideal': banca_ideal.toLocaleString('en-us', { style: 'currency', currency: 'USD' }),
+          'valor_ultra': valor_ultra.toLocaleString('en-us', { style: 'currency', currency: 'USD' }),
           'contador': contador
         };
         multi = false;
@@ -110,6 +50,7 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
       }
       contador++;
       stake_anterior = stake;
+      soma_anterior = soma_valores;
     }
   }
 
@@ -117,9 +58,9 @@ function calculo_stop(stop_ideal, m_factor, stake, soma = false) {
 
 function show_calc_in_table(stop_loss, recom_stop, stop_ultra, vezes_mg) {
   let table_data = document.querySelectorAll('td');
-  table_data[0].innerHTML = '$' + stop_loss;
-  table_data[1].innerHTML = '$' + stop_ultra;
-  table_data[2].innerHTML = '$' + recom_stop;
+  table_data[0].innerHTML = stop_loss.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+  table_data[1].innerHTML = stop_ultra;
+  table_data[2].innerHTML = recom_stop;
   table_data[3].innerHTML = vezes_mg;
 }
 
@@ -151,3 +92,5 @@ form_calc.addEventListener("submit", function (e) {
   let show_value = document.querySelector('.show_number');
   show_calc(form_calc, show_value);
 })
+
+

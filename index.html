@@ -27,17 +27,17 @@
     <form name="form" class="flex-row _direction-column _align-center">
       <label class="form-label">
         <span>Stop loss pretendido: </span> <br>
-        <input type="number" required step="any" name="stop" placeholder="ex: 10">
+        <input type="number" min="1" required step="any" name="stop" placeholder="ex: 10">
       </label>
 
       <label class="form-label">
         <span>Valor de entrada (stake): </span> <br>
-        <input type="number" required step="any" name="stake" placeholder="ex: 0,35">
+        <input type="number" min="0,35" required step="any" name="stake" placeholder="ex: 0,35">
       </label>
 
       <label class="form-label">
         <span>Fator de multiplicação: </span> <br>
-        <input type="number" required step="any" name="mfactor" placeholder="ex: 1,1">
+        <input type="number" min="1" required step="any" name="mfactor" placeholder="ex: 1,1">
       </label>
 
       <label class="form-label">
@@ -51,8 +51,7 @@
     </form>
     <div class="stop-ideal _font-center">
       <p>
-        O valor ideal de Stop Loss é de: <span style="color: green; font-size: 25px;">$</span><span
-          class="show_number">0</span>
+        O valor ideal de Stop Loss é de: <span class="show_number">$0</span>
       </p>
     </div>
     <div class="flex-row _justify-center">
